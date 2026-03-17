@@ -7,8 +7,8 @@ const button = tv({
 		variant: {
 			primary: "bg-emerald-500 text-neutral-950 hover:bg-emerald-600",
 			secondary:
-				"border border-neutral-700 text-neutral-200 hover:bg-neutral-800 hover:border-neutral-600",
-			link: "border border-neutral-700 text-neutral-400 hover:text-neutral-300 hover:border-neutral-500",
+				"border border-[#2A2A2A] text-[#E5E5E5] hover:bg-[#171717] hover:border-[#404040]",
+			link: "border border-[#2A2A2A] text-[#A3A3A3] hover:text-[#D4D4D4] hover:border-[#525252]",
 		},
 		size: {
 			sm: "h-8 px-3 text-xs",
