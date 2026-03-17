@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h1 align="center">
+  <img alt="DevRoast" title="DevRoast" src="./public/logo.svg" width="200px" />
+</h1>
 
-## Getting Started
+<h3 align="center">
+Seu código merece ser analysado — e roasted!
+</h3>
+<h5 align="center">
+  Feito com Next.js | TypeScript | Tailwind
+</h5>
 
-First, run the development server:
+<p align="center">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/burn-c/devroast?color=10B981">
+  <img alt="License" src="https://img.shields.io/badge/licence-MIT-10B981">
+  <a href="https://www.linkedin.com/in/carlosoliveiradev/">
+    <img alt="Made by Carlos Oliveira" src="https://img.shields.io/badge/made%20by-carlos%20oliveira-10B981">
+  </a>
+</p>
+
+<p align="center">
+  <a href="#-sobre">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-funcionalidades">Funcionalidades</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-como-executar">Como executar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+</p>
+
+---
+
+## 💡 Sobre
+
+**DevRoast** é uma aplicação web onde você pode colar seu código e receber uma análise — nem sempre gentil — sobre a qualidade do seu código.
+
+O projeto foi desenvolvido durante o **NLW da Rocketseat**, mas com uma abordagem única: em vez de seguir exatamente o que foi mostrado nas aulas, optamos por seguir nosso próprio caminho de desenvolvimento, usando IA como parceira para tomar decisões de arquitetura e implementação.
+
+A ideia é simples: você cola seu código, ele é analysado, e você recebe uma pontuação (nem sempre alta 😅) com feedback sobre os problemas encontrados.
+
+## 🔥 Funcionalidades
+
+- 📝 **Colar código** - Interface estilo editor de código
+- 🔄 **Toggle Roast Mode** - Para quem quer sarcasm mode ON
+- 📊 **Pontuação** - Sistema de score de 0 a 10
+- 🏆 **Leaderboard** - Ranking dos piores códigos
+- 💻 **Análise de código** - Identificação de más práticas
+
+## 🚀 Como executar
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/burn-c/devroast.git
+```
+
+2. Instale as dependências:
+
+```bash
+npm install
+```
+
+3. Execute o servidor de desenvolvimento:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠 Tecnologias
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Biome](https://biomejs.dev/)
+- [Shiki](https://shiki.style/) (syntax highlighting)
+- [Radix UI](https://www.radix-ui.com/) (primitives)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+**Nota:** Este projeto foi desenvolvido durante o NLW da Rocketseat, mas com implementações e decisões de design próprias. O layout final pode diferir do apresentado nas aulas — e isso é intencional!
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Made with 🔥 by Carlos Oliveira (BurN) - [My linkedin!](https://www.linkedin.com/in/carlosoliveiradev/)
