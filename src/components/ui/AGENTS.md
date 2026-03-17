@@ -32,7 +32,7 @@ export { Button } from "./button";
 ```tsx
 import { type HTMLAttributes, forwardRef } from "react";
 
-export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> { }
+export interface ButtonProps extends HTMLAttributes<**HTMLButtonElement**> { }
 ```
 
 ### 3. Tailwind Variants

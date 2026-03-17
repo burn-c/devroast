@@ -3,3 +3,4 @@ postcss.config.mjs
 next.config.mjs
 next-env.d.ts
 tsconfig.json
+src/components/ui/code-block.tsx
