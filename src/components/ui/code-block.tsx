@@ -1,4 +1,6 @@
-import { codeToHtml } from "shiki";
+"use client";
+
+import { useEffect, useState } from "react";
 
 export interface CodeBlockProps {
 	code: string;
@@ -6,17 +8,25 @@ export interface CodeBlockProps {
 	lang?: string;
 }
 
-export async function CodeBlock({
-	code,
-	filename,
-	lang = "javascript",
-}: CodeBlockProps) {
-	const html = await codeToHtml(code, {
-		lang,
-		theme: "vesper",
-	});
-
+export function CodeBlock({ code, filename, lang = "javascript" }: CodeBlockProps) {
+	const [html, setHtml] = useState<string>("");
 	const lines = code.split("\n");
+
+	useEffect(() => {
+		const highlight = async () => {
+			try {
+				const { codeToHtml } = await import("shiki");
+				const result = await codeToHtml(code, {
+					lang,
+					theme: "vesper",
+				});
+				setHtml(result);
+			} catch {
+				setHtml(code);
+			}
+		};
+		highlight();
+	}, [code, lang]);
 
 	return (
 		<div className="w-full rounded-[6px] border border-[#2A2A2A] overflow-hidden bg-[#111111]">
@@ -35,7 +45,6 @@ export async function CodeBlock({
 					))}
 				</div>
 				<div
-					// eslint-disable-next-line react/no-danger
 					dangerouslySetInnerHTML={{ __html: html }}
 					className="flex-1 p-3 [&>pre]:!bg-transparent [&>pre]:!m-0 [&>pre]:!p-0 [&>pre]:!text-[13px] [&>pre]:!font-mono [&>.shiki]:!bg-transparent"
 				/>
