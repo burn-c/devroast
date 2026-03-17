@@ -18,7 +18,6 @@ import sql from "highlight.js/lib/languages/sql";
 import typescript from "highlight.js/lib/languages/typescript";
 import xml from "highlight.js/lib/languages/xml";
 import yaml from "highlight.js/lib/languages/yaml";
-import Prism from "prismjs";
 import {
 	forwardRef,
 	type HTMLAttributes,
@@ -33,6 +32,24 @@ import {
 	SUPPORTED_LANGUAGES,
 	type SupportedLanguage,
 } from "@/lib/vesper-prism";
+
+hljs.registerLanguage("javascript", javascript);
+hljs.registerLanguage("typescript", typescript);
+hljs.registerLanguage("python", python);
+hljs.registerLanguage("java", java);
+hljs.registerLanguage("csharp", csharp);
+hljs.registerLanguage("go", go);
+hljs.registerLanguage("rust", rust);
+hljs.registerLanguage("ruby", ruby);
+hljs.registerLanguage("php", php);
+hljs.registerLanguage("sql", sql);
+hljs.registerLanguage("html", xml);
+hljs.registerLanguage("css", css);
+hljs.registerLanguage("json", json);
+hljs.registerLanguage("yaml", yaml);
+hljs.registerLanguage("markdown", markdown);
+hljs.registerLanguage("bash", bash);
+hljs.registerLanguage("markup", xml);
 
 hljs.registerLanguage("javascript", javascript);
 hljs.registerLanguage("typescript", typescript);
@@ -100,10 +117,34 @@ export interface CodeEditorProps
 	minHeight?: number;
 }
 
+const languageMap: Record<string, string> = {
+	javascript: "javascript",
+	typescript: "typescript",
+	python: "python",
+	java: "java",
+	csharp: "csharp",
+	go: "go",
+	rust: "rust",
+	ruby: "ruby",
+	php: "php",
+	sql: "sql",
+	html: "markup",
+	css: "css",
+	json: "json",
+	yaml: "yaml",
+	bash: "bash",
+	plaintext: "plaintext",
+};
+
 const highlightCode = (code: string, lang: string): string => {
-	const grammar = Prism.languages[lang];
-	if (grammar) {
-		return Prism.highlight(code, grammar, lang);
+	try {
+		if (typeof window === "undefined") return code;
+		const hlLang = languageMap[lang] || "plaintext";
+		if (hljs.getLanguage(hlLang)) {
+			return hljs.highlight(code, { language: hlLang }).value;
+		}
+	} catch {
+		// Fallback to plain text
 	}
 	return code;
 };
@@ -139,8 +180,10 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
 		const [language, setLanguage] = useState<SupportedLanguage>(
 			controlledLanguage || "javascript",
 		);
+		const [isMounted, setIsMounted] = useState(false);
 
 		useEffect(() => {
+			setIsMounted(true);
 			loadVesperPrism();
 		}, []);
 
@@ -219,7 +262,7 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
 						<Editor
 							value={value}
 							onValueChange={handleCodeChange}
-							highlight={(code) => highlightCode(code, language)}
+							highlight={(code) => (isMounted ? highlightCode(code, language) : code)}
 							padding={16}
 							className="font-mono text-[13px]"
 							style={{
