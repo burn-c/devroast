@@ -288,7 +288,7 @@ export default async function DesignSystem() {
 						</span>
 					</div>
 
-					<Navbar links={["leaderboard"]} />
+					<Navbar links={[{ label: "leaderboard", href: "/leaderboard" }]} />
 				</section>
 
 				{/* ScoreRing */}

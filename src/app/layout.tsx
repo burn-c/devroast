@@ -15,7 +15,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className="bg-[#0C0C0C]">
-				<Navbar links={["leaderboard"]} />
+				<Navbar links={[{ label: "leaderboard", href: "/leaderboard" }]} />
 				<main>{children}</main>
 			</body>
 		</html>

@@ -1,10 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 
 export interface NavbarProps extends HTMLAttributes<HTMLDivElement> {
 	logo?: ReactNode;
-	links?: ReactNode[];
+	links?: { label: string; href?: string }[];
 }
 
 export const Navbar = forwardRef<HTMLDivElement, NavbarProps>(
@@ -33,9 +34,13 @@ export const Navbar = forwardRef<HTMLDivElement, NavbarProps>(
 				{links && (
 					<div className="flex items-center gap-6">
 						{links.map((link, i) => (
-							<span key={i} className="text-[#A3A3A3] font-mono text-[13px]">
-								{link}
-							</span>
+							<Link
+								key={i}
+								href={link.href || "/"}
+								className="text-[#A3A3A3] font-mono text-[13px] hover:text-[#FAFAFA] transition-colors"
+							>
+								{link.label}
+							</Link>
 						))}
 					</div>
 				)}
