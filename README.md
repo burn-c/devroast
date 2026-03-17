@@ -42,6 +42,10 @@ A ideia é simples: você cola seu código, ele é analysado, e você recebe uma
 - 🏆 **Leaderboard** - Ranking dos piores códigos
 - 💻 **Análise de código** - Identificação de más práticas
 
+## 🎨 Protótipo
+
+O design do projeto foi criado no **Pencil** e está disponível em [`docs/assets/devroast.pen`](docs/assets/devroast.pen). Utilizamos a integração **MCP do Pencil** junto com o **OpenCode CLI** para extrair informações do protótipo e auxiliar no desenvolvimento dos componentes.
+
 ## 🚀 Como executar
 
 1. Clone o repositório:
