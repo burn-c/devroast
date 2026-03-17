@@ -4,9 +4,8 @@
 
 ```
 src/components/ui/
-├── index.ts          # Exporta todos os componentes
-├── clsx-merge.ts     # Utilitário para merge de classes (apenas para casos sem tv)
-└── [component].tsx  # Cada componente em seu próprio arquivo
+├── index.ts            # Exporta todos os componentes
+└── [component].tsx    # Cada componente em seu próprio arquivo
 ```
 
 ## Regras
@@ -42,15 +41,15 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> { }
 - Passar `className` diretamente como parâmetro
 
 ```tsx
-const button = tv(
-  { base: "..." },
-  { variants: { variant: { ... } } }
-);
+const button = tv({
+  base: "...",
+  variants: { variant: { ... } }
+});
 
 // Uso correto - className é mesclado automaticamente
 <Button className="custom-class" variant="primary" />
 
-// NO button, não precisa de clsxMerge/twMerge
+// Não precisa de clsxMerge/twMerge
 className={button({ variant, size, className })}
 ```
 
@@ -60,21 +59,17 @@ className={button({ variant, size, className })}
 import { type HTMLAttributes, forwardRef } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
-const component = tv(
-  {
-    base: "classes base",
+const component = tv({
+  base: "classes base",
+  variants: {
+    variant: { ... },
+    size: { ... },
   },
-  {
-    variants: {
-      variant: { ... },
-      size: { ... },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "md",
-    },
+  defaultVariants: {
+    variant: "default",
+    size: "md",
   },
-);
+});
 
 export interface ComponentProps
   extends HTMLAttributes<HTMLDivElement>,
