@@ -1,5 +1,10 @@
 import * as TogglePrimitive from "@radix-ui/react-toggle";
-import { type ButtonHTMLAttributes, forwardRef, type ReactNode } from "react";
+import {
+	type ButtonHTMLAttributes,
+	forwardRef,
+	type ReactNode,
+	useState,
+} from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
 const toggle = tv({
@@ -42,8 +47,9 @@ const toggleKnob = tv({
 });
 
 export interface ToggleProps
-	extends ButtonHTMLAttributes<HTMLButtonElement>,
+	extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children">,
 		VariantProps<typeof toggle> {
+	defaultPressed?: boolean;
 	pressed?: boolean;
 	onPressedChange?: (pressed: boolean) => void;
 	children?: ReactNode;
@@ -51,17 +57,37 @@ export interface ToggleProps
 
 export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
 	(
-		{ className, variant, pressed, onPressedChange, children, ...props },
+		{
+			className,
+			variant,
+			defaultPressed = false,
+			pressed: controlledPressed,
+			onPressedChange,
+			children,
+			...props
+		},
 		ref,
 	) => {
+		const [uncontrolledPressed, setUncontrolledPressed] =
+			useState(defaultPressed);
+		const isControlled = controlledPressed !== undefined;
+		const pressed = isControlled ? controlledPressed : uncontrolledPressed;
+
 		const state = pressed ? "on" : "off";
+
+		const handlePressedChange = (newPressed: boolean) => {
+			if (!isControlled) {
+				setUncontrolledPressed(newPressed);
+			}
+			onPressedChange?.(newPressed);
+		};
 
 		return (
 			<div className={toggle({ variant, className })}>
 				<TogglePrimitive.Root
 					ref={ref}
 					pressed={pressed}
-					onPressedChange={onPressedChange}
+					onPressedChange={handlePressedChange}
 					className={toggleTrack({ state })}
 					{...props}
 				>
