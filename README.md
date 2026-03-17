@@ -44,7 +44,7 @@ A ideia é simples: você cola seu código, ele é analysado, e você recebe uma
 
 ## 🎨 Protótipo
 
-O design do projeto foi criado no **Pencil** e está disponível em [`docs/assets/devroast.pen`](docs/assets/devroast.pen). Utilizamos a integração **MCP do Pencil** junto com o **OpenCode CLI** para extrair informações do protótipo e auxiliar no desenvolvimento dos componentes.
+O design do projeto foi criado no [**Pencil**](https://pencil.evolus.vn/) e está disponível em [`docs/assets/devroast.pen`](docs/assets/devroast.pen). Utilizamos a integração **MCP do Pencil** junto com o [**OpenCode CLI**](https://opencode.ai/) para extrair informações do protótipo e auxiliar no desenvolvimento dos componentes.
 
 ## 🚀 Como executar
 
@@ -76,6 +76,8 @@ npm run dev
 - [Biome](https://biomejs.dev/)
 - [Shiki](https://shiki.style/) (syntax highlighting)
 - [Radix UI](https://www.radix-ui.com/) (primitives)
+- [Pencil](https://pencil.evolus.vn/) (prototipagem)
+- [OpenCode CLI](https://opencode.ai/) (desenvolvimento assistido por IA)
 
 ---
 
