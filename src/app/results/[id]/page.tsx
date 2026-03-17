@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { Button, Card, CodeBlock, DiffLine, ScoreRing } from "@/components/ui";
+import { Badge, Button, Card, CodeBlock, DiffLine, ScoreRing } from "@/components/ui";
 import type {
 	Analysis,
 	DiffLine as DiffLineType,
@@ -18,14 +18,6 @@ interface RoastData {
 	problems: Problem[];
 	diffLines: DiffLineType[];
 }
-
-const verdictColors: Record<string, "critical" | "warning" | "good"> = {
-	needs_serious_help: "critical",
-	rough_around_edges: "warning",
-	decent_code: "warning",
-	solid_work: "good",
-	exceptional: "good",
-};
 
 export default function ResultsPage() {
 	const params = useParams();
@@ -77,7 +69,6 @@ export default function ResultsPage() {
 	}
 
 	const { submission, analysis, problems, diffLines } = data;
-	const color = verdictColors[analysis.verdict] || "warning";
 	const lines = submission.code.split("\n").length;
 
 	return (
@@ -89,26 +80,9 @@ export default function ResultsPage() {
 
 					<div className="flex flex-col gap-4 flex-1">
 						<div className="flex items-center gap-2">
-							<span
-								className={`inline-flex items-center gap-2 px-3 py-1 rounded-full font-mono text-[13px] font-medium ${
-									color === "critical"
-										? "bg-red-500/10 text-red-500"
-										: color === "warning"
-											? "bg-amber-500/10 text-amber-500"
-											: "bg-emerald-500/10 text-emerald-500"
-								}`}
-							>
-								<span
-									className={`w-2 h-2 rounded-full ${
-										color === "critical"
-											? "bg-red-500"
-											: color === "warning"
-												? "bg-amber-500"
-												: "bg-emerald-500"
-									}`}
-								/>
+							<Badge variant={analysis.verdict} rounded>
 								verdict: {analysis.verdict}
-							</span>
+							</Badge>
 						</div>
 
 						<p className="font-['IBM_Plex_Mono'] text-[20px] text-[#FAFAFA] leading-relaxed">
