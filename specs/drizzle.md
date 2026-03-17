@@ -56,13 +56,13 @@ export const verdictEnum = pgEnum("verdict", [
 
 #### Cores por verdict (Tailwind)
 
-| Verdict | Score | Cor | Hex |
-|---------|-------|-----|-----|
-| needs_serious_help | 0-2 | red-500 | #EF4444 |
-| rough_around_edges | 2.1-4 | orange-500 | #F97316 |
-| decent_code | 4.1-6 | amber-500 | #F59E0B |
-| solid_work | 6.1-8 | yellow-500 | #EAB308 |
-| exceptional | 8.1-10 | emerald-500 | #10B981 |
+| Verdict | Score | Cor | Hex | Descrição |
+|---------|-------|-----|-----|-----------|
+| needs_serious_help | 0-4 | red-500 | #EF4444 | 🔴 Código problemático, precisa de ajuda urgente |
+| rough_around_edges | 4.1-6 | orange-500 | #F97316 | 🟠 Funciona mas precisa de melhorias |
+| decent_code | 6.1-7 | amber-500 | #F59E0B | 🟡 Código médio, nada extraordinário |
+| solid_work | 7.1-8.5 | yellow-500 | #EAB308 | 🟢✅ Código bom, bem estruturado |
+| exceptional | 8.6-10 | emerald-500 | #10B981 | 💚 Código excepcional, pronto para produção |
 
 **Nota**: O título é predefinido (igual ao valor do enum), mas a mensagem é gerada por IA no modo sarcástico e salva no banco.
 
