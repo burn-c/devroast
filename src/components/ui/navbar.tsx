@@ -1,3 +1,5 @@
+"use client";
+
 import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 
 export interface NavbarProps extends HTMLAttributes<HTMLDivElement> {

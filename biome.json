@@ -19,7 +19,8 @@
 			"recommended": true,
 			"suspicious": {
 				"noUnknownAtRules": "off",
-				"noArrayIndexKey": "off"
+				"noArrayIndexKey": "off",
+				"noCommentText": "off"
 			},
 			"security": {
 				"noDangerouslySetInnerHtml": "off"
