@@ -9,6 +9,9 @@ export { Card } from "./card";
 
 export { CodeBlock } from "./code-block";
 
+export type { CodeEditorProps } from "./code-editor";
+export { CodeEditor } from "./code-editor";
+
 export type { DiffLineProps } from "./diff-line";
 export { DiffLine } from "./diff-line";
 
