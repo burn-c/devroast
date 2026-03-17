@@ -8,3 +8,5 @@ export { CodeBlock } from "./code-block";
 
 export type { ToggleProps } from "./toggle";
 export { Toggle } from "./toggle";
+
+export { ToggleExample } from "./toggle-example";

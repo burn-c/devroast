@@ -1,3 +1,5 @@
+"use client";
+
 import * as TogglePrimitive from "@radix-ui/react-toggle";
 import {
 	type ButtonHTMLAttributes,

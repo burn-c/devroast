@@ -1,4 +1,5 @@
-import { Badge, Button, CodeBlock, Toggle } from "@/components/ui";
+import { Badge, Button, CodeBlock } from "@/components/ui";
+import { ToggleExample } from "@/components/ui/toggle-example";
 
 export default async function DesignSystem() {
 	const codeExample = `function calculateTotal(items) {
@@ -137,8 +138,7 @@ export default async function DesignSystem() {
 					</div>
 
 					<div className="flex items-center gap-8">
-						<Toggle pressed>roast mode</Toggle>
-						<Toggle>roast mode</Toggle>
+						<ToggleExample />
 					</div>
 				</section>
 
