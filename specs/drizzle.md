@@ -226,30 +226,30 @@ DATABASE_URL=postgresql://devroast:devroast_password@localhost:5432/devroast
 
 ### 4.1 Configuração Inicial
 
-- [ ] Instalar dependências: `drizzle-orm`, `drizzle-kit`, `postgres`
-- [ ] Criar arquivo `drizzle.config.ts`
-- [ ] Configurar variável de ambiente `DATABASE_URL`
-- [ ] Criar arquivo `src/db/index.ts` para conexão
-- [ ] Criar arquivo `src/db/schema.ts` com todas as tabelas e enums
+- [X] Instalar dependências: `drizzle-orm`, `drizzle-kit`, `postgres`
+- [X] Criar arquivo `drizzle.config.ts`
+- [X] Configurar variável de ambiente `DATABASE_URL`
+- [X] Criar arquivo `src/db/index.ts` para conexão
+- [X] Criar arquivo `src/db/schema.ts` com todas as tabelas e enums
 
 ### 4.2 Docker Compose
 
-- [ ] Criar arquivo `docker-compose.yml` na raiz
-- [ ] Criar script de seed em `db/seed/001-leaderboard.sql`
-- [ ] Adicionar comando no package.json: `docker:up`, `docker:down`
+- [X] Criar arquivo `docker-compose.yml` na raiz
+- [X] Criar script de seed em `db/seed/001-leaderboard.sql`
+- [X] Adicionar comando no package.json: `docker:up`, `docker:down`
 
 ### 4.3 Migrations
 
-- [ ] Criar migration inicial com `npm run db:generate`
-- [ ] Executar migration com `npm run db:push`
-- [ ] Verificar tabelas criadas no banco
+- [X] Criar migration inicial com `npm run db:generate`
+- [X] Executar migration com `npm run db:push`
+- [X] Verificar tabelas criadas no banco
 
-### 4.4seed Data
+### 4.4 Seed Data
 
-- [ ] Popular tabela `submissions` com dados de exemplo
-- [ ] Popular tabela `analyses` com scores variados
-- [ ] Popular tabela `problems` com problemas de exemplo
-- [ ] Popular tabela `diff_lines` com sugestões de exemplo
+- [X] Popular tabela `submissions` com dados de exemplo (100 registros)
+- [X] Popular tabela `analyses` com scores variados
+- [X] Popular tabela `problems` com problemas de exemplo
+- [X] Popular tabela `diff_lines` com sugestões de exemplo
 
 ### 4.5 Integração com App
 
@@ -257,6 +257,10 @@ DATABASE_URL=postgresql://devroast:devroast_password@localhost:5432/devroast
 - [ ] Criar functions helpers para CRUD
 - [ ] Integrar com página inicial (leaderboard)
 - [ ] Integrar com página de resultados
+
+---
+
+## Progresso: 80% ████████░░░░░░░░░░░░░░ 16/20 tarefas
 
 ---
 

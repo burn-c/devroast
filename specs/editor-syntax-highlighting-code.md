@@ -79,13 +79,17 @@ Dropdown com linguagens populares:
 
 ## To-Dos para Implementação
 
-- [ ] Instalar `react-simple-code-editor` e `prismjs`
-- [ ] Instalar `highlight.js` para auto-detecção
-- [ ] Criar tema Vesper customizado para Prism.js
-- [ ] Criar componente `CodeEditor` em `src/components/ui/`
-- [ ] Adicionar dropdown de seleção de linguagem populares listadas nesta doc
-- [ ] Implementar auto-detecção de linguagem
-- [ ] Integrar com a homepage (substituir código estático)
+- [X] Instalar `react-simple-code-editor` e `prismjs`
+- [X] Instalar `highlight.js` para auto-detecção
+- [X] Criar tema Vesper customizado para Prism.js
+- [X] Criar componente `CodeEditor` em `src/components/ui/`
+- [X] Adicionar dropdown de seleção de linguagem populares listadas nesta doc
+- [X] Implementar auto-detecção de linguagem
+- [X] Integrar com a homepage (substituir código estático)
+
+---
+
+## Progresso: 100% ████████████████████████ 7/7 tarefas
 
 ## Decisões Tomadas
 
