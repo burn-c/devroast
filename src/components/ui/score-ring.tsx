@@ -5,11 +5,19 @@ export interface ScoreRingProps extends HTMLAttributes<HTMLDivElement> {
 	maxScore?: number;
 }
 
+const getScoreColor = (score: number, maxScore: number): string => {
+	const percentage = (score / maxScore) * 100;
+	if (percentage <= 40) return "#EF4444"; // red - 0-4
+	if (percentage <= 70) return "#F59E0B"; // amber - 4.1-7
+	return "#10B981"; // green - 7.1-10
+};
+
 export const ScoreRing = forwardRef<HTMLDivElement, ScoreRingProps>(
 	({ className, score, maxScore = 10, ...props }, ref) => {
-		const percentage = Math.min(score / maxScore, 1);
-		const strokeDasharray = 2 * Math.PI * 80;
-		const strokeDashoffset = strokeDasharray * (1 - percentage);
+		const percentage = Math.min(Math.max(score / maxScore, 0), 1);
+		const circumference = 2 * Math.PI * 80;
+		const strokeDashoffset = circumference * (1 - percentage);
+		const scoreColor = getScoreColor(score, maxScore);
 
 		return (
 			<div
@@ -30,36 +38,26 @@ export const ScoreRing = forwardRef<HTMLDivElement, ScoreRingProps>(
 						ry="80"
 						fill="none"
 						stroke="#2A2A2A"
-						strokeWidth="4"
+						strokeWidth="8"
 					/>
-					<defs>
-						<linearGradient
-							id="scoreGradient"
-							x1="0%"
-							y1="0%"
-							x2="100%"
-							y2="0%"
-						>
-							<stop offset="0%" stopColor="#10B981" />
-							<stop offset="35%" stopColor="#F59E0B" />
-							<stop offset="36%" stopColor="transparent" />
-						</linearGradient>
-					</defs>
 					<ellipse
 						cx="90"
 						cy="90"
 						rx="80"
 						ry="80"
 						fill="none"
-						stroke="url(#scoreGradient)"
-						strokeWidth="4"
-						strokeDasharray={strokeDasharray}
+						stroke={scoreColor}
+						strokeWidth="8"
+						strokeDasharray={circumference}
 						strokeDashoffset={strokeDashoffset}
 						strokeLinecap="round"
 					/>
 				</svg>
 				<div className="absolute inset-0 flex items-center justify-center">
-					<span className="text-[#FAFAFA] font-mono text-[48px] font-bold">
+					<span
+						className="font-mono text-[48px] font-bold"
+						style={{ color: scoreColor }}
+					>
 						{score}
 					</span>
 					<span className="text-[#737373] font-mono text-[16px]">
