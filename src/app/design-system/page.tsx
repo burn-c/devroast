@@ -1,5 +1,5 @@
 import { Badge, Button, CodeBlock } from "@/components/ui";
-import { ToggleExample } from "@/components/ui/toggle-example";
+import { ToggleExample } from "./toggle-example";
 
 export default async function DesignSystem() {
 	const codeExample = `function calculateTotal(items) {
