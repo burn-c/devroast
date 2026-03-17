@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import {
 	decimal,
 	inet,
@@ -110,3 +111,34 @@ export type Problem = typeof problems.$inferSelect;
 export type NewProblem = typeof problems.$inferInsert;
 export type DiffLine = typeof diffLines.$inferSelect;
 export type NewDiffLine = typeof diffLines.$inferInsert;
+
+// Relations
+export const submissionsRelations = relations(submissions, ({ one }) => ({
+	analysis: one(analyses, {
+		fields: [submissions.id],
+		references: [analyses.submissionId],
+	}),
+}));
+
+export const analysesRelations = relations(analyses, ({ one, many }) => ({
+	submission: one(submissions, {
+		fields: [analyses.submissionId],
+		references: [submissions.id],
+	}),
+	problems: many(problems),
+	diffLines: many(diffLines),
+}));
+
+export const problemsRelations = relations(problems, ({ one }) => ({
+	analysis: one(analyses, {
+		fields: [problems.analysisId],
+		references: [analyses.id],
+	}),
+}));
+
+export const diffLinesRelations = relations(diffLines, ({ one }) => ({
+	analysis: one(analyses, {
+		fields: [diffLines.analysisId],
+		references: [analyses.id],
+	}),
+}));
