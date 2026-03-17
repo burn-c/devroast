@@ -24,6 +24,8 @@ const sampleCode = `function calculateTotal(items) {
   return total;
 }`;
 
+const sampleAnalysisId = "a6489bba-41ca-47fd-9eef-fbfd40d697a3"; // Go code example
+
 const leaderboardData = [
 	{
 		rank: "1",
@@ -98,9 +100,11 @@ export default function Home() {
 							</span>
 						</div>
 					</div>
-					<Button variant="primary" onClick={handleRoast}>
-						$ roast_my_code
-					</Button>
+					<Link href={`/results/${sampleAnalysisId}`}>
+						<Button variant="primary" onClick={handleRoast}>
+							$ roast_my_code
+						</Button>
+					</Link>
 				</section>
 
 				{/* Footer Stats */}

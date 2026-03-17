@@ -262,7 +262,9 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
 						<Editor
 							value={value}
 							onValueChange={handleCodeChange}
-							highlight={(code) => (isMounted ? highlightCode(code, language) : code)}
+							highlight={(code) =>
+								isMounted ? highlightCode(code, language) : code
+							}
 							padding={16}
 							className="font-mono text-[13px]"
 							style={{
