@@ -1,11 +1,29 @@
-import { desc, eq } from "drizzle-orm";
+import { asc, desc, eq, sql } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { db } from "@/db";
 import { analyses, submissions } from "@/db/schema";
 
-export async function GET() {
+export async function GET(request: Request) {
+	const { searchParams } = new URL(request.url);
+	const sort = searchParams.get("sort") || "worst"; // "worst" | "best" | "recent"
+	const limit = parseInt(searchParams.get("limit") || "10");
+
 	try {
-		const recentSubmissions = await db
+		let orderBy;
+		switch (sort) {
+			case "best":
+				orderBy = desc(analyses.score);
+				break;
+			case "recent":
+				orderBy = desc(analyses.createdAt);
+				break;
+			case "worst":
+			default:
+				orderBy = asc(analyses.score);
+				break;
+		}
+
+		const leaderboardData = await db
 			.select({
 				submissionId: submissions.id,
 				code: submissions.code,
@@ -17,10 +35,29 @@ export async function GET() {
 			})
 			.from(submissions)
 			.innerJoin(analyses, eq(submissions.id, analyses.submissionId))
-			.orderBy(desc(analyses.createdAt))
-			.limit(10);
+			.orderBy(orderBy)
+			.limit(limit);
 
-		return NextResponse.json(recentSubmissions);
+		const totalResult = await db
+			.select({ count: sql<number>`count(*)` })
+			.from(submissions)
+			.innerJoin(analyses, eq(submissions.id, analyses.submissionId));
+
+		const total = totalResult[0]?.count || 0;
+
+		const avgScoreResult = await db
+			.select({ avg: sql<string>`avg(${analyses.score})` })
+			.from(analyses);
+
+		const avgScore = avgScoreResult[0]?.avg || "0";
+
+		return NextResponse.json({
+			submissions: leaderboardData,
+			stats: {
+				total,
+				avgScore: parseFloat(avgScore).toFixed(1),
+			},
+		});
 	} catch (error) {
 		console.error("Error fetching submissions:", error);
 		return NextResponse.json(
