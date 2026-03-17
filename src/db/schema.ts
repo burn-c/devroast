@@ -1,13 +1,13 @@
 import {
+	decimal,
+	inet,
+	integer,
 	pgEnum,
 	pgTable,
-	uuid,
 	text,
-	decimal,
-	integer,
 	timestamp,
-	inet,
-} from "drizzle-orm/postgres-core";
+	uuid,
+} from "drizzle-orm/pg-core";
 
 // Enums
 export const languageEnum = pgEnum("language", [

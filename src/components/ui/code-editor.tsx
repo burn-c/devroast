@@ -1,29 +1,33 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
-import Editor from "react-simple-code-editor";
-import Prism from "prismjs";
-import hljs from "highlight.js/lib/core";
-import javascript from "highlight.js/lib/languages/javascript";
-import typescript from "highlight.js/lib/languages/typescript";
-import python from "highlight.js/lib/languages/python";
-import java from "highlight.js/lib/languages/java";
-import csharp from "highlight.js/lib/languages/csharp";
-import go from "highlight.js/lib/languages/go";
-import rust from "highlight.js/lib/languages/rust";
-import ruby from "highlight.js/lib/languages/ruby";
-import php from "highlight.js/lib/languages/php";
-import sql from "highlight.js/lib/languages/sql";
-import xml from "highlight.js/lib/languages/xml";
-import css from "highlight.js/lib/languages/css";
-import json from "highlight.js/lib/languages/json";
-import yaml from "highlight.js/lib/languages/yaml";
-import markdown from "highlight.js/lib/languages/markdown";
-import bash from "highlight.js/lib/languages/bash";
-import plaintext from "highlight.js/lib/languages/plaintext";
 import * as SelectPrimitive from "@radix-ui/react-select";
-import { type HTMLAttributes, forwardRef } from "react";
-import { tv, type VariantProps } from "tailwind-variants";
+import hljs from "highlight.js/lib/core";
+import bash from "highlight.js/lib/languages/bash";
+import csharp from "highlight.js/lib/languages/csharp";
+import css from "highlight.js/lib/languages/css";
+import go from "highlight.js/lib/languages/go";
+import java from "highlight.js/lib/languages/java";
+import javascript from "highlight.js/lib/languages/javascript";
+import json from "highlight.js/lib/languages/json";
+import markdown from "highlight.js/lib/languages/markdown";
+import php from "highlight.js/lib/languages/php";
+import python from "highlight.js/lib/languages/python";
+import ruby from "highlight.js/lib/languages/ruby";
+import rust from "highlight.js/lib/languages/rust";
+import sql from "highlight.js/lib/languages/sql";
+import typescript from "highlight.js/lib/languages/typescript";
+import xml from "highlight.js/lib/languages/xml";
+import yaml from "highlight.js/lib/languages/yaml";
+import Prism from "prismjs";
+import {
+	forwardRef,
+	type HTMLAttributes,
+	useCallback,
+	useEffect,
+	useState,
+} from "react";
+import Editor from "react-simple-code-editor";
+import { tv } from "tailwind-variants";
 import {
 	loadVesperPrism,
 	SUPPORTED_LANGUAGES,
@@ -46,7 +50,7 @@ hljs.registerLanguage("json", json);
 hljs.registerLanguage("yaml", yaml);
 hljs.registerLanguage("markdown", markdown);
 hljs.registerLanguage("bash", bash);
-hljs.registerLanguage("plaintext", plaintext);
+hljs.registerLanguage("markup", xml);
 
 const editorContainer = tv({
 	base: "rounded-[6px] border border-[#2A2A2A] overflow-hidden bg-[#111111]",
@@ -104,7 +108,7 @@ const highlightCode = (code: string, lang: string): string => {
 	return code;
 };
 
-const detectLanguage = (code: string): SupportedLanguage => {
+const _detectLanguage = (code: string): SupportedLanguage => {
 	try {
 		const result = hljs.highlightAuto(code);
 		if (
@@ -135,15 +139,10 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
 		const [language, setLanguage] = useState<SupportedLanguage>(
 			controlledLanguage || "javascript",
 		);
-		const [highlightedCode, setHighlightedCode] = useState("");
 
 		useEffect(() => {
 			loadVesperPrism();
 		}, []);
-
-		useEffect(() => {
-			setHighlightedCode(highlightCode(value, language));
-		}, [value, language]);
 
 		const handleLanguageChange = useCallback(
 			(newLanguage: SupportedLanguage) => {

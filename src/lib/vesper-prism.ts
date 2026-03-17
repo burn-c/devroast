@@ -10,11 +10,6 @@ import "prismjs/components/prism-php";
 import "prismjs/components/prism-sql";
 import "prismjs/components/prism-markup";
 import "prismjs/components/prism-css";
-import "prismjs/components/prism-json";
-import "prismjs/components/prism-yaml";
-import "prismjs/components/prism-markdown";
-import "prismjs/components/prism-bash";
-import "prismjs/components/prism-plaintext";
 
 const baseStyles = `
 code[class*="language-"],
@@ -172,7 +167,7 @@ export const SUPPORTED_LANGUAGES = [
 	{ value: "yaml", label: "YAML" },
 	{ value: "markdown", label: "Markdown" },
 	{ value: "bash", label: "Bash" },
-	{ value: "plaintext", label: "Plain Text" },
+	{ value: "markup", label: "HTML" },
 ] as const;
 
 export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number]["value"];

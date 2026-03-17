@@ -1,6 +1,15 @@
-import Link from "next/link";
+"use client";
 
-import { Button, TableRow, Toggle } from "@/components/ui";
+import Link from "next/link";
+import { useState } from "react";
+
+import {
+	Button,
+	CodeEditor,
+	type SupportedLanguage,
+	TableRow,
+	Toggle,
+} from "@/components/ui";
 
 const sampleCode = `function calculateTotal(items) {
   var total = 0;
@@ -45,6 +54,14 @@ const leaderboardData = [
 ];
 
 export default function Home() {
+	const [code, setCode] = useState(sampleCode);
+	const [language, setLanguage] = useState<SupportedLanguage>("javascript");
+	const [roastMode, setRoastMode] = useState(true);
+
+	const handleRoast = () => {
+		console.log("Roasting code:", { code, language, roastMode });
+	};
+
 	return (
 		<div className="flex flex-col items-center px-10 py-8">
 			<div className="w-full max-w-[960px] flex flex-col gap-8">
@@ -60,51 +77,30 @@ export default function Home() {
 					</p>
 				</section>
 
-				{/* Code Input */}
-				<section className="rounded-[6px] border border-[#2A2A2A] overflow-hidden">
-					{/* Window Header */}
-					<div className="flex items-center justify-between h-10 px-4 border-b border-[#2A2A2A]">
-						<div className="flex items-center gap-2">
-							<span className="w-3 h-3 rounded-full bg-red-500" />
-							<span className="w-3 h-3 rounded-full bg-amber-500" />
-							<span className="w-3 h-3 rounded-full bg-emerald-500" />
-						</div>
-					</div>
-
-					{/* Code Area */}
-					<div className="flex min-h-[360px] bg-[#111111]">
-						{/* Line Numbers */}
-						<div className="flex flex-col items-end gap-2 py-3 px-3 min-w-[48px] border-r border-[#2A2A2A] text-[12px] text-[#737373] font-mono">
-							{Array.from({ length: 17 }, (_, i) => (
-								<span key={i}>{i + 1}</span>
-							))}
-						</div>
-
-						{/* Code */}
-						<div className="flex-1 p-4 font-mono text-[12px]">
-							<code className="text-[#FAFAFA]">
-								{Array.from({ length: 17 }, (_, i) => (
-									<div key={i} className="leading-6">
-										{sampleCode.split("\n")[i]}
-									</div>
-								))}
-							</code>
-						</div>
-					</div>
-				</section>
+				{/* Code Editor */}
+				<CodeEditor
+					value={code}
+					onChange={setCode}
+					language={language}
+					onLanguageChange={setLanguage}
+				/>
 
 				{/* Actions Bar */}
 				<section className="flex items-center justify-between">
 					<div className="flex items-center gap-4">
 						<div className="flex items-center gap-2.5">
-							<Toggle pressed>roast mode</Toggle>
+							<Toggle pressed={roastMode} onPressedChange={setRoastMode}>
+								roast mode
+							</Toggle>
 							<span className="text-[12px] text-[#737373] font-['IBM_Plex_Mono']">
-								<span className="text-[#737373]">//</span> maximum sarcasm
-								enabled
+								<span className="text-[#737373]">//</span> maximum sarcasm{" "}
+								{roastMode ? "enabled" : "disabled"}
 							</span>
 						</div>
 					</div>
-					<Button variant="primary">$ roast_my_code</Button>
+					<Button variant="primary" onClick={handleRoast}>
+						$ roast_my_code
+					</Button>
 				</section>
 
 				{/* Footer Stats */}

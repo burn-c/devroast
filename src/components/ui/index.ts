@@ -1,14 +1,11 @@
+export type { SupportedLanguage } from "@/lib/vesper-prism";
 export type { BadgeProps } from "./badge";
 export { Badge } from "./badge";
-
 export type { ButtonProps } from "./button";
 export { Button } from "./button";
-
 export type { CardProps } from "./card";
 export { Card } from "./card";
-
 export { CodeBlock } from "./code-block";
-
 export type { CodeEditorProps } from "./code-editor";
 export { CodeEditor } from "./code-editor";
 
