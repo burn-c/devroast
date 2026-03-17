@@ -10,6 +10,8 @@ import {
 } from "@/components/ui";
 import { ToggleExample } from "./toggle-example";
 
+export const dynamic = "force-dynamic";
+
 export default async function DesignSystem() {
 	const codeExample = `function calculateTotal(items) {
   var total = 0;
