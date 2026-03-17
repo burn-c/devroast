@@ -10,7 +10,7 @@ const getScoreColor = (score: number, maxScore: number): string => {
 	if (percentage <= 40) return "#EF4444"; // red - needs_serious_help (0-4)
 	if (percentage <= 60) return "#F97316"; // orange - rough_around_edges (4.1-6)
 	if (percentage <= 70) return "#F59E0B"; // amber - decent_code (6.1-7)
-	if (percentage <= 85) return "#EAB308"; // yellow - solid_work (7.1-8.5)
+	if (percentage <= 85) return "#3B82F6"; // blue - solid_work (7.1-8.5)
 	return "#10B981"; // green - exceptional (8.6-10)
 };
 
