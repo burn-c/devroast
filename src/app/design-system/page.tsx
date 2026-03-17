@@ -1,4 +1,13 @@
-import { Badge, Button, CodeBlock } from "@/components/ui";
+import {
+	Badge,
+	Button,
+	Card,
+	CodeBlock,
+	DiffLine,
+	Navbar,
+	ScoreRing,
+	TableRow,
+} from "@/components/ui";
 import { ToggleExample } from "./toggle-example";
 
 export default async function DesignSystem() {
@@ -13,6 +22,7 @@ export default async function DesignSystem() {
 	return (
 		<div className="min-h-screen bg-[#0C0C0C] p-[80px_60px]">
 			<div className="flex flex-col gap-14">
+				{/* Button */}
 				<section>
 					<div className="flex flex-col gap-1 mb-5">
 						<span className="text-[#FAFAFA] font-mono text-[18px] font-bold">
@@ -127,6 +137,7 @@ export default async function DesignSystem() {
 					</div>
 				</section>
 
+				{/* Toggle */}
 				<section>
 					<div className="flex items-center gap-2 mb-6">
 						<span className="text-[#10B981] font-mono text-[14px] font-bold">
@@ -142,6 +153,7 @@ export default async function DesignSystem() {
 					</div>
 				</section>
 
+				{/* Badge */}
 				<section>
 					<div className="flex items-center gap-2 mb-6">
 						<span className="text-[#10B981] font-mono text-[14px] font-bold">
@@ -160,6 +172,40 @@ export default async function DesignSystem() {
 					</div>
 				</section>
 
+				{/* Cards */}
+				<section>
+					<div className="flex items-center gap-2 mb-6">
+						<span className="text-[#10B981] font-mono text-[14px] font-bold">
+							&#47;&#47;
+						</span>
+						<span className="text-[#FAFAFA] font-mono text-[14px] font-bold">
+							cards
+						</span>
+					</div>
+
+					<div className="flex flex-col gap-3">
+						<Card
+							variant="critical"
+							label="critical"
+							title="using var instead of const/let"
+							description="the var keyword is function-scoped rather than block-scoped, which can lead to unexpected behavior and bugs. modern javascript uses const for immutable bindings and let for mutable ones."
+						/>
+						<Card
+							variant="warning"
+							label="warning"
+							title="using var instead of const/let"
+							description="the var keyword is function-scoped rather than block-scoped."
+						/>
+						<Card
+							variant="good"
+							label="good"
+							title="using const correctly"
+							description="using const for immutable bindings is recommended."
+						/>
+					</div>
+				</section>
+
+				{/* CodeBlock */}
 				<section>
 					<div className="flex items-center gap-2 mb-6">
 						<span className="text-[#10B981] font-mono text-[14px] font-bold">
@@ -172,6 +218,92 @@ export default async function DesignSystem() {
 
 					<div className="max-w-[560px]">
 						<CodeBlock code={codeExample} filename="calculate.js" />
+					</div>
+				</section>
+
+				{/* DiffLine */}
+				<section>
+					<div className="flex items-center gap-2 mb-6">
+						<span className="text-[#10B981] font-mono text-[14px] font-bold">
+							&#47;&#47;
+						</span>
+						<span className="text-[#FAFAFA] font-mono text-[14px] font-bold">
+							diff_line
+						</span>
+					</div>
+
+					<div className="flex flex-col rounded-[6px] border border-[#2A2A2A] overflow-hidden w-[560px]">
+						<DiffLine type="removed" content="var total = 0;" />
+						<DiffLine type="added" content="const total = 0;" />
+						<DiffLine
+							type="context"
+							content="for (let i = 0; i &lt; items.length; i++) {"
+						/>
+					</div>
+				</section>
+
+				{/* TableRow */}
+				<section>
+					<div className="flex items-center gap-2 mb-6">
+						<span className="text-[#10B981] font-mono text-[14px] font-bold">
+							&#47;&#47;
+						</span>
+						<span className="text-[#FAFAFA] font-mono text-[14px] font-bold">
+							table_row
+						</span>
+					</div>
+
+					<div className="flex flex-col rounded-[6px] border border-[#2A2A2A] overflow-hidden w-full max-w-[600px]">
+						<TableRow
+							rank="#1"
+							score="2.1"
+							codePreview="function calculateTotal(items) { var total = 0; ..."
+							language="javascript"
+						/>
+						<TableRow
+							rank="#2"
+							score="5.8"
+							codePreview="function calculateTotal(items) { let total = 0; ..."
+							language="javascript"
+						/>
+						<TableRow
+							rank="#3"
+							score="8.3"
+							codePreview="const calculateTotal = (items) => items.reduce..."
+							language="javascript"
+						/>
+					</div>
+				</section>
+
+				{/* Navbar */}
+				<section>
+					<div className="flex items-center gap-2 mb-6">
+						<span className="text-[#10B981] font-mono text-[14px] font-bold">
+							&#47;&#47;
+						</span>
+						<span className="text-[#FAFAFA] font-mono text-[14px] font-bold">
+							navbar
+						</span>
+					</div>
+
+					<Navbar links={["leaderboard"]} />
+				</section>
+
+				{/* ScoreRing */}
+				<section>
+					<div className="flex items-center gap-2 mb-6">
+						<span className="text-[#10B981] font-mono text-[14px] font-bold">
+							&#47;&#47;
+						</span>
+						<span className="text-[#FAFAFA] font-mono text-[14px] font-bold">
+							score_ring
+						</span>
+					</div>
+
+					<div className="flex items-center gap-8">
+						<ScoreRing score={3.5} maxScore={10} />
+						<ScoreRing score={8} maxScore={10} />
+						<ScoreRing score={10} maxScore={10} />
 					</div>
 				</section>
 			</div>
