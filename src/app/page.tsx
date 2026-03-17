@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Button, TableRow, Toggle } from "@/components/ui";
 
 const sampleCode = `function calculateTotal(items) {
@@ -153,7 +155,13 @@ export default function Home() {
 
 					{/* Fade Hint */}
 					<p className="text-center py-4 text-[12px] text-[#737373] font-['IBM_Plex_Mono']">
-						showing top 3 of 2,847 · view full leaderboard &gt;&gt;
+						showing top 3 of 2,847 ·{" "}
+						<Link
+							className="text-[#A3A3A3] hover:text-[#FAFAFA]"
+							href="/leaderboard"
+						>
+							view full leaderboard &gt;&gt;
+						</Link>
 					</p>
 				</section>
 
