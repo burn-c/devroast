@@ -23,12 +23,13 @@ interface LeaderboardData {
 	};
 }
 
-const verdictColors: Record<string, string> = {
-	needs_serious_help: "#EF4444",
-	rough_around_edges: "#F97316",
-	decent_code: "#F59E0B",
-	solid_work: "#3B82F6",
-	exceptional: "#10B981",
+const getScoreColor = (score: number): string => {
+	const percentage = (score / 10) * 100;
+	if (percentage <= 40) return "#EF4444"; // red (0-4)
+	if (percentage <= 60) return "#F97316"; // orange (4.1-6)
+	if (percentage <= 75) return "#F59E0B"; // amber (6.1-7.5)
+	if (percentage <= 85) return "#3B82F6"; // blue (7.6-8.5)
+	return "#10B981"; // emerald (8.6-10)
 };
 
 const formatDate = (dateString: string): string => {
@@ -144,7 +145,9 @@ export default function LeaderboardPage() {
 											</span>
 											<span
 												className="font-mono text-[13px]"
-												style={{ color: verdictColors[submission.verdict] }}
+												style={{
+													color: getScoreColor(Number(submission.score)),
+												}}
 											>
 												{submission.score}/10
 											</span>
@@ -160,9 +163,12 @@ export default function LeaderboardPage() {
 									{/* Code Preview */}
 									<div className="flex bg-[#111111]">
 										<div className="flex flex-col items-end gap-1.5 py-3 px-2.5 min-w-[40px] border-r border-[#2A2A2A] text-[#737373] text-[13px] font-mono">
-											{submission.code.split("\n").slice(0, 3).map((_, i) => (
-												<span key={i}>{i + 1}</span>
-											))}
+											{submission.code
+												.split("\n")
+												.slice(0, 3)
+												.map((_, i) => (
+													<span key={i}>{i + 1}</span>
+												))}
 										</div>
 										<pre className="flex-1 p-3 text-[13px] font-mono text-[#A3A3A3] overflow-hidden">
 											{getCodePreview(submission.code)}
