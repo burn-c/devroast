@@ -23,6 +23,6 @@ Stack/tecnologias específicas, se houver.
 
 ## Fluxo
 
-1. Criar spec em `@sparks/feature-name.md`
+1. Criar spec em `/specs/feature-name.md`
 2. Revisar com o time
 3. Aprovar antes de implementar
