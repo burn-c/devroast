@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/ui";
+import { TRPCReactProvider } from "@/trpc/provider";
 
 export const metadata: Metadata = {
 	title: "devroast",
@@ -15,8 +16,10 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className="bg-[#0C0C0C]">
-				<Navbar links={[{ label: "leaderboard", href: "/leaderboard" }]} />
-				<main>{children}</main>
+				<TRPCReactProvider>
+					<Navbar links={[{ label: "leaderboard", href: "/leaderboard" }]} />
+					<main>{children}</main>
+				</TRPCReactProvider>
 			</body>
 		</html>
 	);

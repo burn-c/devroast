@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 
 import {
 	Button,
 	CodeEditor,
+	Metrics,
+	MetricsSkeleton,
 	type SupportedLanguage,
 	TableRow,
 	Toggle,
@@ -24,7 +26,7 @@ const sampleCode = `function calculateTotal(items) {
   return total;
 }`;
 
-const sampleAnalysisId = "a6489bba-41ca-47fd-9eef-fbfd40d697a3"; // Go code example
+const sampleAnalysisId = "a6489bba-41ca-47fd-9eef-fbfd40d697a3";
 
 const leaderboardData = [
 	{
@@ -54,6 +56,14 @@ const leaderboardData = [
 		language: "sql",
 	},
 ];
+
+function MetricsSection() {
+	return (
+		<Suspense fallback={<MetricsSkeleton />}>
+			<Metrics />
+		</Suspense>
+	);
+}
 
 export default function Home() {
 	const [code, setCode] = useState(sampleCode);
@@ -108,10 +118,8 @@ export default function Home() {
 				</section>
 
 				{/* Footer Stats */}
-				<section className="flex justify-center gap-6 text-[12px] text-[#737373] font-['IBM_Plex_Mono']">
-					<span>2,847 codes roasted</span>
-					<span>·</span>
-					<span>avg score: 4.2/10</span>
+				<section className="flex justify-center">
+					<MetricsSection />
 				</section>
 
 				{/* Spacer */}

@@ -1,7 +1,3 @@
-import {
-	defaultShouldDehydrateQuery,
-	QueryClient,
-} from "@tanstack/react-query";
 import { createTRPCOptionsProxy } from "@trpc/tanstack-react-query";
 import { cache } from "react";
 import { createCallerFactory, createTRPCContext } from "./init";

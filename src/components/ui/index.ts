@@ -11,6 +11,10 @@ export { CodeEditor } from "./code-editor";
 
 export type { DiffLineProps } from "./diff-line";
 export { DiffLine } from "./diff-line";
+export { Metrics } from "./metrics";
+export type { MetricsCardProps } from "./metrics-card";
+export { MetricsCard } from "./metrics-card";
+export { MetricsSkeleton } from "./metrics-skeleton";
 
 export type { NavbarProps } from "./navbar";
 export { Navbar } from "./navbar";
