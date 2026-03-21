@@ -18,14 +18,14 @@ export const TableRow = forwardRef<HTMLDivElement, TableRowProps>(
 				}
 				{...props}
 			>
-				<div className="w-10 text-[#737373] font-mono text-[13px]">{rank}</div>
-				<div className="w-15 text-red-500 font-mono text-[13px] font-bold">
+				<div className="w-12 text-[#737373] font-mono text-[12px]">{rank}</div>
+				<div className="w-[70px] text-red-500 font-mono text-[12px] font-bold">
 					{score}
 				</div>
-				<div className="flex-1 text-[#A3A3A3] font-mono text-[12px] truncate">
+				<div className="flex-1 text-[#A3A3A3] font-mono text-[12px] truncate pr-4">
 					{codePreview}
 				</div>
-				<div className="w-25 text-[#737373] font-mono text-[12px]">
+				<div className="w-[100px] text-[#737373] font-mono text-[12px]">
 					{language}
 				</div>
 			</div>

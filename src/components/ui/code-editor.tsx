@@ -266,14 +266,16 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
 								isMounted ? highlightCode(code, language) : code
 							}
 							padding={16}
-							className="font-mono text-[13px]"
+							className="font-mono text-[13px] text-[#FAFAFA] bg-transparent"
 							style={{
 								fontFamily:
 									'"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
 								fontSize: 13,
 								minHeight: minHeight - 40,
+								backgroundColor: "transparent",
+								color: "#FAFAFA",
 							}}
-							textareaClassName="focus:outline-none"
+							textareaClassName="focus:outline-none !bg-transparent !text-[#FAFAFA]"
 						/>
 					</div>
 				</div>

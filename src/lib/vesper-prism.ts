@@ -1,139 +1,93 @@
-const baseStyles = `
-code[class*="language-"],
-pre[class*="language-"] {
-	color: #FAFAFA;
-	background: none;
-	font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+const highlightJsStyles = `
+code.hljs,
+.hljs {
+	color: #ABB2BF;
+	background: transparent;
+	font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 	font-size: 13px;
-	text-align: left;
-	white-space: pre;
-	word-spacing: normal;
-	word-break: normal;
-	word-wrap: normal;
 	line-height: 1.625;
-	-moz-tab-size: 2;
-	-o-tab-size: 2;
-	tab-size: 2;
-	-webkit-hyphens: none;
-	-moz-hyphens: none;
-	-ms-hyphens: none;
-	hyphens: none;
 }
 
-pre[class*="language-"] {
-	padding: 1em;
-	margin: 0;
-	overflow: auto;
-	background: #111111;
-}
-
-:not(pre) > code[class*="language-"] {
-	padding: 0.1em 0.3em;
-	border-radius: 0.3em;
-	white-space: normal;
-	background: #111111;
-}
-
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
+.hljs-comment,
+.hljs-quote {
 	color: #5C6370;
 	font-style: italic;
 }
 
-.token.punctuation {
-	color: #ABB2BF;
-}
-
-.token.namespace {
-	opacity: 0.7;
-}
-
-.token.property,
-.token.tag,
-.token.boolean,
-.token.number,
-.token.constant,
-.token.symbol,
-.token.deleted {
-	color: #D19A66;
-}
-
-.token.selector,
-.token.attr-name,
-.token.string,
-.token.char,
-.token.builtin,
-.token.inserted {
-	color: #C5E447;
-}
-
-.token.operator,
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string {
-	color: #56B6C2;
-}
-
-.token.atrule,
-.token.attr-value,
-.token.keyword {
-	color: #FF6B6B;
-}
-
-.token.function,
-.token.class-name {
-	color: #61AFEF;
-}
-
-.token.regex,
-.token.important,
-.token.variable {
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
 	color: #C678DD;
 }
 
-.token.important,
-.token.bold {
-	font-weight: bold;
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+	color: #E06C75;
 }
 
-.token.italic {
-	font-style: italic;
+.hljs-literal {
+	color: #56B6C2;
 }
 
-.token.entity {
-	cursor: help;
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta .hljs-string {
+	color: #98C379;
 }
 
-.token.directive,
-.token.directive-hash {
-	color: #61AFEF;
-}
-
-.token.cookie {
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
 	color: #D19A66;
 }
 
-.token.entity-css {
-	cursor: help;
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+	color: #61AFEF;
 }
 
-.token.functional {
-	color: #E5C07B;
+.hljs-built_in,
+.hljs-title.class_,
+.hljs-class .hljs-title {
+	color: #E6C07B;
 }
 
-.token.property-access {
-	color: #E06C75;
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+
+.hljs-link {
+	text-decoration: underline;
 }
 `;
 
 export function loadVesperPrism() {
 	if (typeof window === "undefined") return;
 
+	const existing = document.getElementById("highlightjs-styles");
+	if (existing) return;
+
 	const style = document.createElement("style");
-	style.textContent = baseStyles;
+	style.id = "highlightjs-styles";
+	style.textContent = highlightJsStyles;
 	document.head.appendChild(style);
 }
 
